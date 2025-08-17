@@ -43,6 +43,14 @@ namespace IUP.Toolkits
         public static Vector4 WithYZW(this Vector2 self, float y, float z, float w) => new(self.x, y, z, w);
         #endregion
 
+        #region InvertVector2
+        public static Vector2 InvertX(this Vector2 self) => new(-self.x, self.y);
+
+        public static Vector2 InvertY(this Vector2 self) => new(self.x, -self.y);
+
+        public static Vector2 Invert(this Vector2 self) => new(-self.x, -self.y);
+        #endregion
+
         #region WithVector2Int
         public static Vector2Int WithX(this Vector2Int self, int x) => new(x, self.y);
 
@@ -53,6 +61,14 @@ namespace IUP.Toolkits
         public static Vector3Int WithXZ(this Vector2Int self, int x, int z) => new(x, self.y, z);
 
         public static Vector3Int WithYZ(this Vector2Int self, int y, int z) => new(self.x, y, z);
+        #endregion
+
+        #region InvertVector2Int
+        public static Vector2Int InvertX(this Vector2Int self) => new(-self.x, self.y);
+
+        public static Vector2Int InvertY(this Vector2Int self) => new(self.x, -self.y);
+
+        public static Vector2Int Invert(this Vector2Int self) => new(-self.x, -self.y);
         #endregion
 
         #region WithVector3
@@ -83,6 +99,22 @@ namespace IUP.Toolkits
         public static Vector4 WithYZW(this Vector3 self, float y, float z, float w) => new(self.x, y, z, w);
         #endregion
 
+        #region InvertVector3
+        public static Vector3 InvertX(this Vector3 self) => new(-self.x, self.y, self.z);
+
+        public static Vector3 InvertY(this Vector3 self) => new(self.x, -self.y, self.z);
+
+        public static Vector3 InvertZ(this Vector3 self) => new(self.x, self.y, -self.z);
+
+        public static Vector3 InvertXY(this Vector3 self) => new(-self.x, -self.y, self.z);
+
+        public static Vector3 InvertXZ(this Vector3 self) => new(-self.x, self.y, -self.z);
+
+        public static Vector3 InvertYZ(this Vector3 self) => new(self.x, -self.y, -self.z);
+
+        public static Vector3 Invert(this Vector3 self) => new(-self.x, -self.y, -self.z);
+        #endregion
+
         #region WithVector3Int
         public static Vector3Int WithX(this Vector3Int self, int x) => new(x, self.y, self.z);
 
@@ -95,6 +127,22 @@ namespace IUP.Toolkits
         public static Vector3Int WithXZ(this Vector3Int self, int x, int z) => new(x, self.y, z);
 
         public static Vector3Int WithYZ(this Vector3Int self, int y, int z) => new(self.x, y, z);
+        #endregion
+
+        #region InvertVector3Int
+        public static Vector3Int InvertX(this Vector3Int self) => new(-self.x, self.y, self.z);
+
+        public static Vector3Int InvertY(this Vector3Int self) => new(self.x, -self.y, self.z);
+
+        public static Vector3Int InvertZ(this Vector3Int self) => new(self.x, self.y, -self.z);
+
+        public static Vector3Int InvertXY(this Vector3Int self) => new(-self.x, -self.y, self.z);
+
+        public static Vector3Int InvertXZ(this Vector3Int self) => new(-self.x, self.y, -self.z);
+
+        public static Vector3Int InvertYZ(this Vector3Int self) => new(self.x, -self.y, -self.z);
+
+        public static Vector3Int Invert(this Vector3Int self) => new(-self.x, -self.y, -self.z);
         #endregion
 
         #region WithVector4
@@ -125,6 +173,38 @@ namespace IUP.Toolkits
         public static Vector4 WithXZW(this Vector4 self, float x, float z, float w) => new(x, self.y, z, w);
 
         public static Vector4 WithYZW(this Vector4 self, float y, float z, float w) => new(self.x, y, z, w);
+        #endregion
+
+        #region InvertVector4
+        public static Vector4 InvertX(this Vector4 self) => new(-self.x, self.y, self.z, self.w);
+
+        public static Vector4 InvertY(this Vector4 self) => new(self.x, -self.y, self.z, self.w);
+
+        public static Vector4 InvertZ(this Vector4 self) => new(self.x, self.y, -self.z, self.w);
+
+        public static Vector4 InvertW(this Vector4 self) => new(self.x, self.y, self.z, -self.w);
+
+        public static Vector4 InvertXY(this Vector4 self) => new(-self.x, -self.y, self.z, self.w);
+
+        public static Vector4 InvertXZ(this Vector4 self) => new(-self.x, self.y, -self.z, self.w);
+
+        public static Vector4 InvertXW(this Vector4 self) => new(-self.x, self.y, self.z, -self.w);
+
+        public static Vector4 InvertYZ(this Vector4 self) => new(self.x, -self.y, -self.z, self.w);
+
+        public static Vector4 InvertYW(this Vector4 self) => new(self.x, -self.y, self.z, -self.w);
+
+        public static Vector4 InvertZW(this Vector4 self) => new(self.x, self.y, -self.z, -self.w);
+
+        public static Vector4 InvertXYZ(this Vector4 self) => new(-self.x, -self.y, -self.z, self.w);
+
+        public static Vector4 InvertXYW(this Vector4 self) => new(-self.x, -self.y, self.z, -self.w);
+
+        public static Vector4 InvertXZW(this Vector4 self) => new(-self.x, self.y, -self.z, -self.w);
+
+        public static Vector4 InvertYZW(this Vector4 self) => new(self.x, -self.y, -self.z, -self.w);
+
+        public static Vector4 Invert(this Vector4 self) => new(-self.x, -self.y, -self.z, -self.w);
         #endregion
 
         #region SwizzleVector2
