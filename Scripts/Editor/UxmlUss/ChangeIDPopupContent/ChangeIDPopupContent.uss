@@ -1,0 +1,25 @@
+.iup-cancel-button {
+    flex-grow: 1;
+}
+
+.iup-change-id-button {
+    flex-grow: 1;
+}
+
+.iup-buttons-container {
+    flex-direction: row;
+}
+
+.iup-fields-container {
+    flex-grow: 1;
+}
+
+.iup-new-id-field {
+}
+
+.iup-root {
+    padding-left: 6px;
+    padding-top: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+}

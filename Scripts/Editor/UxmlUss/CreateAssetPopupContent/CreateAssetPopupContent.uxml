@@ -1,0 +1,12 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Packages/Toolkits/Scripts/Editor/UxmlUss/CreateAssetPopupContent/CreateAssetPopupContent.uss?fileID=7433441132597879392&amp;guid=505f8528bf0ad224c84294289ed7b987&amp;type=3#CreateAssetPopupContent" />
+    <engine:VisualElement name="root" style="flex-grow: 1; padding-left: 6px; padding-right: 6px; padding-top: 6px; padding-bottom: 6px;">
+        <engine:VisualElement name="fields-container" class="iup-fields-container">
+            <engine:TextField label="ID" placeholder-text="Enter id..." name="id-field" class="iup-id-field" />
+        </engine:VisualElement>
+        <engine:VisualElement name="buttons-container" class="iup-buttons-container">
+            <engine:Button text="Cancel" name="cancel-button" class="iup-cancel-button" />
+            <engine:Button text="Create" name="create-button" enabled="false" class="iup-create-button" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

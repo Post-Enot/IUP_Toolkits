@@ -1,0 +1,33 @@
+.iup-project-settings__settings-panel {
+    flex-grow: 1;
+}
+
+.iup-project-settings__settings-container {
+    padding-left: 11px;
+    flex-grow: 1;
+    padding-right: 11px;
+}
+
+.iup-project-settings__title-container {
+    flex-grow: 1;
+}
+
+.iup-project-settings__title {
+    margin-top: 2px;
+    margin-right: 4px;
+    margin-bottom: 2px;
+    margin-left: 0;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    padding-left: 0;
+    font-size: 19px;
+    -unity-font-style: bold;
+}
+
+.iup-project-settings__title-container {
+    flex-grow: 1;
+}
+
+.iup-project-settings__settings-panel {
+    flex-grow: 1;
+}

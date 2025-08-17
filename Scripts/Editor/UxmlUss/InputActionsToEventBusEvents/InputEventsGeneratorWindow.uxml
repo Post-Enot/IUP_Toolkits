@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Packages/Toolkits/Scripts/Editor/UxmlUss/FileField.uss?fileID=7433441132597879392&amp;guid=4b04b1dc03187b348bc9055c929f2dea&amp;type=3#FileField" />
+    <ui:Label text="&lt;b&gt;Input Action Asset&lt;/b&gt;" />
+    <uie:ObjectField label="Asset" name="input-asset-field" type="UnityEngine.InputSystem.InputActionAsset, Unity.InputSystem" />
+    <ui:Label text="&lt;b&gt;Events&lt;/b&gt;" name="events-header" />
+    <IUP.Toolkits.Editor.UI.FileField label="C# Class FIle" value="Assets\Scripts\.auto.generated\Events.cs" save-in-project="true" file-panel-extension="cs" name="events-file-field" />
+    <IUP.Toolkits.Editor.UI.ClassNameField name="events-class-name-field" label="Class Name" placeholder="Enter class name..." value="Events" />
+    <IUP.Toolkits.Editor.UI.NamespaceField name="events-namespace-field" placeholder="Enter namespace..." label="Namespace" />
+    <ui:Label text="&lt;b&gt;Facade&lt;/b&gt;" />
+    <IUP.Toolkits.Editor.UI.FileField label="C# Class FIle" value="Assets\Scripts\.auto.generated\InputFacade.cs" save-in-project="true" name="facade-file-field" file-panel-extension="cs" />
+    <IUP.Toolkits.Editor.UI.ClassNameField name="facade-class-name-field" label="Class Name" placeholder="Enter class name..." value="Facade" />
+    <IUP.Toolkits.Editor.UI.NamespaceField name="facade-namespace-field" placeholder="Enter namespace..." label="Namespace" />
+    <ui:Button text="Generate code" name="generate-code-button" />
+</ui:UXML>

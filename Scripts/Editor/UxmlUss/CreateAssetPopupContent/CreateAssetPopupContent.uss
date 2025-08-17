@@ -1,0 +1,18 @@
+.iup-fields-container {
+    flex-grow: 1;
+}
+
+.iup-buttons-container {
+    flex-direction: row;
+}
+
+.iup-create-button {
+    flex-grow: 1;
+}
+
+.iup-cancel-button {
+    flex-grow: 1;
+}
+
+.iup-id-field {
+}

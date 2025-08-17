@@ -1,0 +1,19 @@
+{
+    "name": "IUP.Toolkits.Editor",
+    "rootNamespace": "IUP.Toolkits.Editor",
+    "references": [
+        "GUID:7f19a47640af19549b889072c6e9799a",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

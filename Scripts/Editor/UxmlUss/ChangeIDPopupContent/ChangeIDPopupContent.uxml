@@ -1,0 +1,12 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Packages/InventorySystem/Editor/UI%20FIles/Change%20Definition%20ID%20Popup/ChangeDefinitionIDPopup.uss?fileID=7433441132597879392&amp;guid=f01ba12e53b7e89468714db2b51bc2a2&amp;type=3#ChangeDefinitionIDPopup" />
+    <engine:VisualElement name="root" class="iup-root" style="flex-grow: 1;">
+        <engine:VisualElement name="fields-container" class="iup-fields-container">
+            <engine:TextField label="New ID" placeholder-text="Enter new id..." name="new-id-field" class="iup-new-id-field" />
+        </engine:VisualElement>
+        <engine:VisualElement name="buttons-container" class="iup-buttons-container">
+            <engine:Button text="Cancel" name="cancel-button" class="iup-cancel-button" />
+            <engine:Button text="Change ID" name="change-id-button" enabled="false" class="iup-rename-button" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
