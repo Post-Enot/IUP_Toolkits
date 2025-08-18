@@ -462,6 +462,103 @@ namespace IUP.Toolkits
 
         #endregion
 
+        #region Clamp0
+
+        /// <summary>
+        /// Возвращает значение 8-битного целого числа со знаком, ограниченное диапазоном
+        /// [0, <paramref name="max"/>].
+        /// </summary>
+        /// <param name="value">Ограничиваемое значение.</param>
+        /// <param name="max">Верхняя граница диапазона.</param>
+        /// <returns>
+        /// 0, если <paramref name="value"/> меньше 0;<br/>
+        /// <paramref name="max"/>, если <paramref name="value"/> больше <paramref name="max"/>;<br/>
+        /// иначе <paramref name="value"/>.
+        /// </returns>
+        public static sbyte Clamp0(sbyte value, sbyte max) => Math.Clamp(value, (sbyte)0, max);
+
+        /// <summary>
+        /// Возвращает значение 16-битного целого числа со знаком, ограниченное диапазоном
+        /// [0, <paramref name="max"/>].
+        /// </summary>
+        /// <param name="value">Ограничиваемое значение.</param>
+        /// <param name="max">Верхняя граница диапазона.</param>
+        /// <returns>
+        /// 0, если <paramref name="value"/> меньше 0;<br/>
+        /// <paramref name="max"/>, если <paramref name="value"/> больше <paramref name="max"/>;<br/>
+        /// иначе <paramref name="value"/>.
+        /// </returns>
+        public static short Clamp0(short value, short max) => Math.Clamp(value, (short)0, max);
+
+        /// <summary>
+        /// Возвращает значение 32-битного целого числа, ограниченное диапазоном
+        /// [0, <paramref name="max"/>].
+        /// </summary>
+        /// <param name="value">Ограничиваемое значение.</param>
+        /// <param name="max">Верхняя граница диапазона.</param>
+        /// <returns>
+        /// 0, если <paramref name="value"/> меньше 0;<br/>
+        /// <paramref name="max"/>, если <paramref name="value"/> больше <paramref name="max"/>;<br/>
+        /// иначе <paramref name="value"/>.
+        /// </returns>
+        public static int Clamp0(int value, int max) => Math.Clamp(value, 0, max);
+
+        /// <summary>
+        /// Возвращает значение 64-битного целого числа, ограниченное диапазоном
+        /// [0, <paramref name="max"/>].
+        /// </summary>
+        /// <param name="value">Ограничиваемое значение.</param>
+        /// <param name="max">Верхняя граница диапазона.</param>
+        /// <returns>
+        /// 0, если <paramref name="value"/> меньше 0;<br/>
+        /// <paramref name="max"/>, если <paramref name="value"/> больше <paramref name="max"/>;<br/>
+        /// иначе <paramref name="value"/>.
+        /// </returns>
+        public static long Clamp0(long value, long max) => Math.Clamp(value, 0, max);
+
+        /// <summary>
+        /// Возвращает число одинарной точности, ограниченное диапазоном
+        /// [0, <paramref name="max"/>].
+        /// </summary>
+        /// <param name="value">Ограничиваемое значение.</param>
+        /// <param name="max">Верхняя граница диапазона.</param>
+        /// <returns>
+        /// 0, если <paramref name="value"/> меньше 0;<br/>
+        /// <paramref name="max"/>, если <paramref name="value"/> больше <paramref name="max"/>;<br/>
+        /// иначе <paramref name="value"/>.<br/>
+        /// Если любой из параметров (<paramref name="value"/>, <paramref name="max"/>) равен 
+        /// <see cref="float.NaN"/>, возвращается <see cref="float.NaN"/>.
+        /// </returns>
+        public static float Clamp0(float value, float max) => Math.Clamp(value, 0.0f, max);
+
+        /// <summary>
+        /// Возвращает число двойной точности, ограниченное диапазоном [0, <paramref name="max"/>].
+        /// </summary>
+        /// <param name="value">Ограничиваемое значение.</param>
+        /// <param name="max">Верхняя граница диапазона.</param>
+        /// <returns>
+        /// 0, если <paramref name="value"/> меньше 0;<br/>
+        /// <paramref name="max"/>, если <paramref name="value"/> больше <paramref name="max"/>;<br/>
+        /// иначе <paramref name="value"/>.<br/>
+        /// Если любой из параметров (<paramref name="value"/>, <paramref name="max"/>) равен 
+        /// <see cref="double.NaN"/>, возвращается <see cref="double.NaN"/>.
+        /// </returns>
+        public static double Clamp0(double value, double max) => Math.Clamp(value, 0.0D, max);
+
+        /// <summary>
+        /// Возвращает десятичное число, ограниченное диапазоном [0, <paramref name="max"/>].
+        /// </summary>
+        /// <param name="value">Ограничиваемое значение.</param>
+        /// <param name="max">Верхняя граница диапазона.</param>
+        /// <returns>
+        /// 0, если <paramref name="value"/> меньше 0;<br/>
+        /// <paramref name="max"/>, если <paramref name="value"/> больше <paramref name="max"/>;<br/>
+        /// иначе <paramref name="value"/>.
+        /// </returns>
+        public static decimal Clamp0(decimal value, decimal max) => Math.Clamp(value, 0.0M, max);
+
+        #endregion
+
         #region Clamp01
 
         /// <summary>
@@ -880,6 +977,77 @@ namespace IUP.Toolkits
         /// </returns>
         public static ulong ClampToUInt64(long value)
             => value < 0L ? ulong.MinValue : (ulong)value;
+
+        #endregion
+
+        #region Lerp
+
+        public static float Lerp(float a, float b, float t) => a + (b - a) * Clamp01(t);
+
+        public static double Lerp(double a, double b, float t) => a + (b - a) * Clamp01(t);
+
+        public static double Lerp(double a, double b, double t) => a + (b - a) * Clamp01(t);
+
+        public static Vector2 Lerp(Vector2 a, Vector2 b, float t)
+        {
+            t = Clamp01(t);
+            float x = a.x + (b.x - a.x) * t;
+            float y = a.y + (b.y - a.y) * t;
+            return new Vector2(x, y);
+        }
+
+        public static Vector3 Lerp(Vector3 a, Vector3 b, float t)
+        {
+            t = Clamp01(t);
+            float x = a.x + (b.x - a.x) * t;
+            float y = a.y + (b.y - a.y) * t;
+            float z = a.z + (b.z - a.z) * t;
+            return new Vector3(x, y, z);
+        }
+
+        public static Vector4 Lerp(Vector4 a, Vector4 b, float t)
+        {
+            t = Clamp01(t);
+            float x = a.x + (b.x - a.x) * t;
+            float y = a.y + (b.y - a.y) * t;
+            float z = a.z + (b.z - a.z) * t;
+            float w = a.w + (b.w - a.w) * t;
+            return new Vector4(x, y, z, w);
+        }
+
+        #endregion
+
+        #region LerpUnclamped
+
+        public static float LerpUnclamped(float a, float b, float t) => a + (b - a) * t;
+
+        public static double LerpUnclamped(double a, double b, float t) => a + (b - a) * t;
+
+        public static double LerpUnclamped(double a, double b, double t) => a + (b - a) * t;
+
+        public static Vector2 LerpUnclamped(Vector2 a, Vector2 b, float t)
+        {
+            float x = a.x + (b.x - a.x) * t;
+            float y = a.y + (b.y - a.y) * t;
+            return new Vector2(x, y);
+        }
+
+        public static Vector3 LerpUnclamped(Vector3 a, Vector3 b, float t)
+        {
+            float x = a.x + (b.x - a.x) * t;
+            float y = a.y + (b.y - a.y) * t;
+            float z = a.z + (b.z - a.z) * t;
+            return new Vector3(x, y, z);
+        }
+
+        public static Vector4 LerpUnclamped(Vector4 a, Vector4 b, float t)
+        {
+            float x = a.x + (b.x - a.x) * t;
+            float y = a.y + (b.y - a.y) * t;
+            float z = a.z + (b.z - a.z) * t;
+            float w = a.w + (b.w - a.w) * t;
+            return new Vector4(x, y, z, w);
+        }
 
         #endregion
 
