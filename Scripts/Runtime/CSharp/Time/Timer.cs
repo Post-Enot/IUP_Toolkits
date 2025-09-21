@@ -1,47 +1,52 @@
-﻿using UnityEngine;
+﻿using System;
 
 namespace IUP.Toolkits
 {
     public sealed class Timer
     {
-        public float StartTime { get; private set; }
-        public float Duration { get; private set; }
+        public Timer(ITimeProvider timeProvider) => _timeProvider = timeProvider;
 
-        public float Time => UnityEngine.Time.time - StartTime;
-        public float TimeClamped => Mathf.Clamp(Time, 0.0f, Duration);
-
-        public float TimeInversed => Duration - Time;
-        public float TimeInversedClamped => Duration - TimeClamped;
-
-        public float TimeNormalized => Time / Duration;
-        public float TimeNormalizedClamped => TimeClamped / Duration;
-
-        public float TimeNormalizedInversed => 1.0f - TimeNormalized;
-        public float TimeNormalizedInversedClamped => 1.0f - TimeNormalizedClamped;
-
-        public bool IsFinished => Time >= Duration;
-
-        public void InitNormalized(float duration, float timeNormalized)
+        public Timer(ITimeProvider timeProvider, float duration = 0.0f)
         {
-            Duration = duration;
-            StartTime = UnityEngine.Time.time - (duration * timeNormalized);
+            _timeProvider = timeProvider;
+            float currentTime = _timeProvider.GetCurrentTime();
+            Stamp = TimeStamp.CreateCompleted(currentTime, duration);
         }
+
+        public TimeStamp Stamp { get; private set; }
+        public bool IsCompleted => Stamp.IsCompleted();
+        public bool IsNotCompleted => Stamp.IsNotCompleted();
+
+        private readonly ITimeProvider _timeProvider;
 
         public void Start(float duration)
         {
-            StartTime = UnityEngine.Time.time;
-            Duration = duration;
+            float time = _timeProvider.GetCurrentTime();
+            if (duration < 0.0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(duration));
+            }
+            Stamp = TimeStamp.CreateUnsafe(time, time, duration);
         }
 
-        public void Restart() => StartTime = UnityEngine.Time.time;
+        public void Restart() => Start(Stamp.Duration);
 
-        public int SetDurationRemainder()
+        public void Reverse()
         {
-            int result = (int)(Time / Duration);
-            StartTime = UnityEngine.Time.time - (Time % Duration);
-            return result;
+            float currentTime = _timeProvider.GetCurrentTime();
+            float startTime = currentTime - Stamp.Remaining();
+            Stamp = TimeStamp.CreateUnsafe(startTime, currentTime, Stamp.Duration);
         }
 
-        public void Inverse() => StartTime = UnityEngine.Time.time - TimeInversedClamped;
+        public bool Update()
+        {
+            if (Stamp.IsCompleted())
+            {
+                return false;
+            }
+            float time = _timeProvider.GetCurrentTime();
+            Stamp = Stamp.UpdateUnsafe(time);
+            return true;
+        }
     }
 }
