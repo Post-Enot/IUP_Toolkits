@@ -5,7 +5,7 @@ using UnityEngine;
 namespace IUP.Toolkits
 {
     [Serializable]
-    public sealed class EventBroker : IEventRegistrar, IEventInvoker
+    public sealed class EventBroker : IEventBroker
     {
         public EventBroker() {}
 

@@ -5,6 +5,8 @@ namespace IUP.Toolkits.HFSM
 {
     public sealed class HFSM<TContext>
     {
+        private HFSM() {}
+
         private State<TContext> _state;
         private int _transitState;
 

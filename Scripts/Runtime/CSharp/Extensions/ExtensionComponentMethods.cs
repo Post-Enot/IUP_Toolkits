@@ -29,5 +29,11 @@ namespace IUP.Toolkits
             }
             return self.gameObject.AddComponent<TComponent>();
         }
+
+        public static bool IsPlaying(this Component self)
+            => Application.IsPlaying(self.gameObject);
+
+        public static bool IsNotPlaying(this Component self)
+            => !Application.IsPlaying(self.gameObject);
     }
 }

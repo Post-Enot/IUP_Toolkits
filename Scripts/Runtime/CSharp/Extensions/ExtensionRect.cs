@@ -15,5 +15,8 @@ namespace IUP.Toolkits
             rect.width = maxX - minX;
             rect.height = maxY - minY;
         }
+
+        public static Vector2 Clamp(this Rect rect, Vector2 point)
+            => IUP_Math.Clamp(point, rect.min, rect.max);
     }
 }

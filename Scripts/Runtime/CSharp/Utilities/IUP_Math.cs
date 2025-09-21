@@ -43,7 +43,6 @@ namespace IUP.Toolkits
         public const float PI2Inverse = 1.0f / PI2;
 
         #region Min
-
         /// <summary>
         /// Возвращает меньшее из двух 8-битных целых чисел со знаком.
         /// </summary>
@@ -140,10 +139,56 @@ namespace IUP.Toolkits
         /// <returns>Наименьшее из <paramref name="a"/> и <paramref name="b"/>.</returns>
         public static decimal Min(decimal a, decimal b) => Math.Min(a, b);
 
+        /// <summary>
+        /// Возвращает минимальную компоненту вектора.
+        /// </summary>
+        /// <param name="a">Исходный вектор.</param>
+        /// <returns>Минимальное значение среди компонент вектора.</returns>
+        public static float Min(Vector2 a) => Math.Min(a.x, a.y);
+
+        /// <summary>
+        /// Возвращает минимальную компоненту вектора.
+        /// </summary>
+        /// <param name="a">Исходный вектор.</param>
+        /// <returns>Минимальное значение среди компонент вектора.</returns>
+        public static float Min(Vector3 a)
+        {
+            float maxXY = Math.Min(a.x, a.y);
+            return Math.Min(maxXY, a.z);
+        }
+
+        /// <summary>
+        /// Возвращает минимальную компоненту вектора.
+        /// </summary>
+        /// <param name="a">Исходный вектор.</param>
+        /// <returns>Минимальное значение среди компонент вектора.</returns>
+        public static float Min(Vector4 a)
+        {
+            float max = Math.Min(a.x, a.y);
+            max = Math.Min(max, a.z);
+            return Math.Min(max, a.w);
+        }
+
+        /// <summary>
+        /// Возвращает минимальную компоненту вектора.
+        /// </summary>
+        /// <param name="a">Исходный вектор.</param>
+        /// <returns>Минимальное значение среди компонент вектора.</returns>
+        public static int Min(Vector2Int a) => Math.Min(a.x, a.y);
+
+        /// <summary>
+        /// Возвращает минимальную компоненту вектора.
+        /// </summary>
+        /// <param name="a">Исходный вектор.</param>
+        /// <returns>Минимальное значение среди компонент вектора.</returns>
+        public static int Min(Vector3Int a)
+        {
+            int min = Math.Min(a.x, a.y);
+            return Math.Min(min, a.z);
+        }
         #endregion
 
         #region Max
-
         /// <summary>
         /// Возвращает большее из двух 8-битных целых чисел со знаком.
         /// </summary>
@@ -240,10 +285,56 @@ namespace IUP.Toolkits
         /// <returns>Наибольшее из <paramref name="a"/> и <paramref name="b"/>.</returns>
         public static decimal Max(decimal a, decimal b) => Math.Max(a, b);
 
+        /// <summary>
+        /// Возвращает максимальную компоненту вектора.
+        /// </summary>
+        /// <param name="a">Исходный вектор.</param>
+        /// <returns>Максимальное значение среди компонент вектора.</returns>
+        public static float Max(Vector2 a) => Math.Max(a.x, a.y);
+
+        /// <summary>
+        /// Возвращает максимальную компоненту вектора.
+        /// </summary>
+        /// <param name="a">Исходный вектор.</param>
+        /// <returns>Максимальное значение среди компонент вектора.</returns>
+        public static float Max(Vector3 a)
+        {
+            float max = Math.Max(a.x, a.y);
+            return Math.Max(max, a.z);
+        }
+
+        /// <summary>
+        /// Возвращает максимальную компоненту вектора.
+        /// </summary>
+        /// <param name="a">Исходный вектор.</param>
+        /// <returns>Максимальное значение среди компонент вектора.</returns>
+        public static float Max(Vector4 a)
+        {
+            float max = Math.Max(a.x, a.y);
+            max = Math.Max(max, a.z);
+            return Math.Max(max, a.w);
+        }
+
+        /// <summary>
+        /// Возвращает максимальную компоненту вектора.
+        /// </summary>
+        /// <param name="a">Исходный вектор.</param>
+        /// <returns>Максимальное значение среди компонент вектора.</returns>
+        public static int Max(Vector2Int a) => Math.Max(a.x, a.y);
+
+        /// <summary>
+        /// Возвращает максимальную компоненту вектора.
+        /// </summary>
+        /// <param name="a">Исходный вектор.</param>
+        /// <returns>Максимальное значение среди компонент вектора.</returns>
+        public static int Max(Vector3Int a)
+        {
+            int max = Math.Max(a.x, a.y);
+            return Math.Max(max, a.z);
+        }
         #endregion
 
         #region Max0
-
         /// <summary>
         /// Возвращает максимальное значение между 8-битным целым числом со знаком и 0.
         /// </summary>
@@ -308,11 +399,9 @@ namespace IUP.Toolkits
         /// <paramref name="a"/>, если <paramref name="a"/> больше 0; иначе 0.
         /// </returns>
         public static decimal Max0(decimal a) => Math.Max(a, 0.0M);
-
         #endregion
 
         #region Clamp
-
         /// <summary>
         /// Возвращает значение 8-битного целого числа со знаком, ограниченное указанным диапазоном.
         /// </summary>
@@ -460,10 +549,97 @@ namespace IUP.Toolkits
         /// </returns>
         public static decimal Clamp(decimal value, decimal min, decimal max) => Math.Clamp(value, min, max);
 
+        /// <summary>
+        /// Возвращает вектор, компоненты которого ограничены указанным диапазоном.
+        /// </summary>
+        /// <param name="value">Ограничиваемый вектор.</param>
+        /// <param name="min">Нижняя граница диапазона (вектор).</param>
+        /// <param name="max">Верхняя граница диапазона (вектор).</param>
+        /// <returns>
+        /// Вектор, каждая компонента которого ограничена соответствующими компонентами
+        /// <paramref name="min"/> и <paramref name="max"/>.
+        /// </returns>
+        public static Vector2 Clamp(Vector2 value, Vector2 min, Vector2 max)
+        {
+            float x = Clamp(value.x, min.x, max.x);
+            float y = Clamp(value.y, min.y, max.y);
+            return new Vector2(x, y);
+        }
+
+        /// <summary>
+        /// Возвращает вектор, компоненты которого ограничены указанным диапазоном.
+        /// </summary>
+        /// <param name="value">Ограничиваемый вектор.</param>
+        /// <param name="min">Нижняя граница диапазона (вектор).</param>
+        /// <param name="max">Верхняя граница диапазона (вектор).</param>
+        /// <returns>
+        /// Вектор, каждая компонента которого ограничена соответствующими компонентами
+        /// <paramref name="min"/> и <paramref name="max"/>.
+        /// </returns>
+        public static Vector3 Clamp(Vector3 value, Vector3 min, Vector3 max)
+        {
+            float x = Clamp(value.x, min.x, max.x);
+            float y = Clamp(value.y, min.y, max.y);
+            float z = Clamp(value.z, min.z, max.z);
+            return new Vector3(x, y, z);
+        }
+
+        /// <summary>
+        /// Возвращает вектор, компоненты которого ограничены указанным диапазоном.
+        /// </summary>
+        /// <param name="value">Ограничиваемый вектор.</param>
+        /// <param name="min">Нижняя граница диапазона (вектор).</param>
+        /// <param name="max">Верхняя граница диапазона (вектор).</param>
+        /// <returns>
+        /// Вектор, каждая компонента которого ограничена соответствующими компонентами
+        /// <paramref name="min"/> и <paramref name="max"/>.
+        /// </returns>
+        public static Vector4 Clamp(Vector4 value, Vector4 min, Vector4 max)
+        {
+            float x = Clamp(value.x, min.x, max.x);
+            float y = Clamp(value.y, min.y, max.y);
+            float z = Clamp(value.z, min.z, max.z);
+            float w = Clamp(value.w, min.w, max.w);
+            return new Vector4(x, y, z, w);
+        }
+
+        /// <summary>
+        /// Возвращает целочисленный вектор, компоненты которого ограничены указанным диапазоном.
+        /// </summary>
+        /// <param name="value">Ограничиваемый вектор.</param>
+        /// <param name="min">Нижняя граница диапазона (вектор).</param>
+        /// <param name="max">Верхняя граница диапазона (вектор).</param>
+        /// <returns>
+        /// Вектор, каждая компонента которого ограничена соответствующими компонентами
+        /// <paramref name="min"/> и <paramref name="max"/>.
+        /// </returns>
+        public static Vector2Int Clamp(Vector2Int value, Vector2Int min, Vector2Int max)
+        {
+            int x = Clamp(value.x, min.x, max.x);
+            int y = Clamp(value.y, min.y, max.y);
+            return new Vector2Int(x, y);
+        }
+
+        /// <summary>
+        /// Возвращает целочисленный вектор, компоненты которого ограничены указанным диапазоном.
+        /// </summary>
+        /// <param name="value">Ограничиваемый вектор.</param>
+        /// <param name="min">Нижняя граница диапазона (вектор).</param>
+        /// <param name="max">Верхняя граница диапазона (вектор).</param>
+        /// <returns>
+        /// Вектор, каждая компонента которого ограничена соответствующими компонентами
+        /// <paramref name="min"/> и <paramref name="max"/>.
+        /// </returns>
+        public static Vector3Int Clamp(Vector3Int value, Vector3Int min, Vector3Int max)
+        {
+            int x = Clamp(value.x, min.x, max.x);
+            int y = Clamp(value.y, min.y, max.y);
+            int z = Clamp(value.z, min.z, max.z);
+            return new Vector3Int(x, y, z);
+        }
         #endregion
 
         #region Clamp0
-
         /// <summary>
         /// Возвращает значение 8-битного целого числа со знаком, ограниченное диапазоном
         /// [0, <paramref name="max"/>].
@@ -556,7 +732,6 @@ namespace IUP.Toolkits
         /// иначе <paramref name="value"/>.
         /// </returns>
         public static decimal Clamp0(decimal value, decimal max) => Math.Clamp(value, 0.0M, max);
-
         #endregion
 
         #region Clamp01
@@ -981,7 +1156,6 @@ namespace IUP.Toolkits
         #endregion
 
         #region Lerp
-
         public static float Lerp(float a, float b, float t) => a + (b - a) * Clamp01(t);
 
         public static double Lerp(double a, double b, float t) => a + (b - a) * Clamp01(t);
@@ -1051,6 +1225,7 @@ namespace IUP.Toolkits
 
         #endregion
 
+        #region Abs
         public static sbyte Abs(sbyte a) => Math.Abs(a);
 
         public static short Abs(short a) => Math.Abs(a);
@@ -1064,6 +1239,7 @@ namespace IUP.Toolkits
         public static double Abs(double a) => Math.Abs(a);
 
         public static decimal Abs(decimal a) => Math.Abs(a);
+        #endregion
 
         public static float Sqrt(float a) => MathF.Sqrt(a);
 

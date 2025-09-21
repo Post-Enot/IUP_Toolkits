@@ -9,7 +9,7 @@ namespace IUP.Toolkits
         /// Вычисляет мировые координаты 8 углов <see cref="BoxCollider"/> с учётом текущей трансформации объекта.
         /// </summary>
         /// <param name="collider">Целевой <see cref="BoxCollider"/>.</param>
-        /// <param name="bufferCorners">
+        /// <param name="buffer">
         /// Буфер для записи углов размером минимум 8 элементов.<br/><br/>
         /// Порядок точек:<br/>
         /// 0 левый-верхний-задний  (-X, +Y, -Z)<br/>
@@ -21,19 +21,63 @@ namespace IUP.Toolkits
         /// 6 правый-нижний-передний (+X, -Y, +Z)<br/>
         /// 7 левый-нижний-передний (-X, -Y, +Z)
         /// </param>
-        public static void BoxColliderCorners(BoxCollider collider, Span<Vector3> bufferCorners)
+        public static void BoxColliderCorners(BoxCollider collider, Span<Vector3> buffer)
         {
             Vector3 center = collider.center;
             Vector3 halfSize = collider.size * 0.5f;
-            bufferCorners[0] = center + new Vector3(-halfSize.x, halfSize.y, -halfSize.z);
-            bufferCorners[1] = center + new Vector3(halfSize.x, halfSize.y, -halfSize.z);
-            bufferCorners[2] = center + new Vector3(halfSize.x, halfSize.y, halfSize.z);
-            bufferCorners[3] = center + new Vector3(-halfSize.x, halfSize.y, halfSize.z);
-            bufferCorners[4] = center + new Vector3(-halfSize.x, -halfSize.y, -halfSize.z);
-            bufferCorners[5] = center + new Vector3(halfSize.x, -halfSize.y, -halfSize.z);
-            bufferCorners[6] = center + new Vector3(halfSize.x, -halfSize.y, halfSize.z);
-            bufferCorners[7] = center + new Vector3(-halfSize.x, -halfSize.y, halfSize.z);
-            collider.transform.TransformPoints(bufferCorners);
+            buffer[0] = center + new Vector3(-halfSize.x, halfSize.y, -halfSize.z);
+            buffer[1] = center + new Vector3(halfSize.x, halfSize.y, -halfSize.z);
+            buffer[2] = center + new Vector3(halfSize.x, halfSize.y, halfSize.z);
+            buffer[3] = center + new Vector3(-halfSize.x, halfSize.y, halfSize.z);
+            buffer[4] = center + new Vector3(-halfSize.x, -halfSize.y, -halfSize.z);
+            buffer[5] = center + new Vector3(halfSize.x, -halfSize.y, -halfSize.z);
+            buffer[6] = center + new Vector3(halfSize.x, -halfSize.y, halfSize.z);
+            buffer[7] = center + new Vector3(-halfSize.x, -halfSize.y, halfSize.z);
+            collider.transform.TransformPoints(buffer);
+        }
+
+        /// <summary>
+        /// Вычисляет приблизительные мировые координаты 8 углов сферы, аппроксимируя её кубом с
+        /// заданной ориентацией осей.
+        /// </summary>
+        /// <param name="collider">Целевой <see cref="SphereCollider"/>.</param>
+        /// <param name="buffer">
+        /// Буфер для записи углов размером минимум 8 элементов.<br/><br/>
+        /// Порядок точек:<br/>
+        /// 0: Право-Верх-Вперёд  (+X, +Y, +Z)<br/>
+        /// 1: Право-Верх-Назад   (+X, +Y, -Z)<br/>
+        /// 2: Право-Низ-Вперёд   (+X, -Y, +Z)<br/>
+        /// 3: Право-Низ-Назад    (+X, -Y, -Z)<br/>
+        /// 4: Лево-Верх-Вперёд   (-X, +Y, +Z)<br/>
+        /// 5: Лево-Верх-Назад    (-X, +Y, -Z)<br/>
+        /// 6: Лево-Низ-Вперёд    (-X, -Y, +Z)<br/>
+        /// 7: Лево-Низ-Назад     (-X, -Y, -Z)
+        /// </param>
+        /// <param name="axisUp">Мировой нормализированный вектор направления "вверх".</param>
+        /// <param name="axisForward">Мировой нормализированный вектор направления "вперёд".</param>
+        /// <param name="axisRight">Мировой нормализированный вектор направления "вправо".</param>
+        /// <exception cref="ArgumentException">Если размер буфера меньше 8.</exception>
+        public static void SphereColliderCornersApproximately(
+            SphereCollider collider,
+            Span<Vector3> buffer,
+            Vector3 axisUp,
+            Vector3 axisForward,
+            Vector3 axisRight)
+        {
+            // Учёт масштаба и преобразование центра
+            Vector3 center = collider.transform.TransformPoint(collider.center);
+            float maxScale = IUP_Math.Max(collider.transform.lossyScale);
+            float scaledRadius = collider.radius * maxScale;
+
+            // Вычисление углов
+            buffer[0] = center + (axisRight + axisUp + axisForward) * scaledRadius;
+            buffer[1] = center + (axisRight + axisUp - axisForward) * scaledRadius;
+            buffer[2] = center + (axisRight - axisUp + axisForward) * scaledRadius;
+            buffer[3] = center + (axisRight - axisUp - axisForward) * scaledRadius;
+            buffer[4] = center + (-axisRight + axisUp + axisForward) * scaledRadius;
+            buffer[5] = center + (-axisRight + axisUp - axisForward) * scaledRadius;
+            buffer[6] = center + (-axisRight - axisUp + axisForward) * scaledRadius;
+            buffer[7] = center + (-axisRight - axisUp - axisForward) * scaledRadius;
         }
 
         /// <summary>

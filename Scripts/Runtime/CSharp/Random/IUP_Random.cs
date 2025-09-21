@@ -28,7 +28,9 @@ namespace IUP.Toolkits
             }
         }
 
-        public static void Shuffle<T>(IList<T> collection) => Shuffle(collection, UnityRandomGenerator);
+        public static void Shuffle<T>(IList<T> collection) => Shuffle(
+            collection,
+            UnityRandomGenerator);
 
         public static void Shuffle<T>(IList<T> collection, IRandomGenerator random)
         {
